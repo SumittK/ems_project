@@ -22,6 +22,8 @@ const generaterefreshToken = (user) => {
   );
 };
 
+
+
 module.exports = {
   generateaccessToken,
   generaterefreshToken,
