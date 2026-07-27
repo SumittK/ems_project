@@ -127,7 +127,7 @@ const users = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, otp } = req.body;
+  const { email, password } = req.body;
 
   try {
     const existUser = await User.findOne({ email }); // returns single  user object
