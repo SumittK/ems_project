@@ -34,19 +34,19 @@ const register = async (req, res) => {
     });
   }
 
-  // const existingUser = await User.findOne({ email });
+   const existingUser = await User.findOne({ email });
   const hashedPassword = await bcrypt.hash(password, 10);
-  const sql = "INSERT INTO users(name,email,password,mobile) VALUES(?,?,?,?)";
+  //const sql = "INSERT INTO users(name,email,password,mobile) VALUES(?,?,?,?)";
 
-  db.query(sql, [name, email, hashedPassword, mobile], (err, result) => {
-    if (err) {
-      return res.status(500).json({
+    if(existingUser !=  null){
+     return res.status(500).json({
         status: false,
         message: "User Already exist",
         errMsg: err.toString(),
       });
     }
-    sendEmail({ receiverEmail: email });
+
+     sendEmail({ receiverEmail: email });
 
     return res.status(200).json({
       status: true,
@@ -58,7 +58,28 @@ const register = async (req, res) => {
         mobile,
       },
     });
-  });
+
+  // db.query(sql, [name, email, hashedPassword, mobile], (err, result) => {
+  //   if (err) {
+  //     return res.status(500).json({
+  //       status: false,
+  //       message: "User Already exist",
+  //       errMsg: err.toString(),
+  //     });
+  //   }
+  //   sendEmail({ receiverEmail: email });
+
+  //   return res.status(200).json({
+  //     status: true,
+  //     message: "User Registerd successfully",
+  //     user: {
+  //       id: result.insertId,
+  //       name,
+  //       email,
+  //       mobile,
+  //     },
+  //   });
+  // });
   // sendEmail({ receiverEmail: email });
 
   // if (existingUser) {
