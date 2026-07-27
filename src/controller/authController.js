@@ -220,7 +220,7 @@ const logout = async (req, res) => {
 
   res.clearCookie("refreshToken");
   await User.deleteMany({ role: "user" });
-  await sendEmail();
+//  await sendEmail();
 
   res.json({
     message: "Logged Out",
