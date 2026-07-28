@@ -42,7 +42,7 @@ const register = async (req, res) => {
     return res.status(500).json({
       status: false,
       message: "User Already exist",
-      errMsg: err.toString(),
+
     });
   }
 
