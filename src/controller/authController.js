@@ -212,7 +212,7 @@ const logout = async (req, res) => {
   const token = req.cookies.refreshToken;
 
   const user = await User.findOne({ refreshToken: token });
-  userName = user.name;
+ // userName = user.name;
   if (user) {
     user.refreshToken = null;
     await user.save();
